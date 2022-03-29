@@ -4,6 +4,7 @@ const childProcess = require("child_process");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const apiMocker = require("connect-api-mocker");
 
 module.exports = {
   mode: "development",
@@ -18,13 +19,7 @@ module.exports = {
     overlay: true,
     stats: "errors-only",
     before: (app) => {
-      app.get("/api/users", (req, res) => {
-        res.json([
-          { id: 1, name: "Alice" },
-          { id: 2, name: "Alice2" },
-          { id: 3, name: "Alice3" },
-        ]);
-      });
+      app.use(apiMocker("/api", "mocks/api"));
     },
   },
   module: {
@@ -74,7 +69,7 @@ module.exports = {
       template: "./src/index.html", // 템플릿 경로를 지정
       templateParameters: {
         // 템플릿에 주입할 파라매터 변수 지정
-        env: process.env.NODE_ENV === "development" ? "(개발용)" : "(롸?)",
+        env: process.env.NODE_ENV === "development" ? "(개발용)" : "",
       },
       minify:
         process.env.NODE_ENV === "production"

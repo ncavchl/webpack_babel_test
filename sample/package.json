@@ -29,6 +29,7 @@
     "@babel/plugin-transform-arrow-functions": "^7.16.7",
     "@babel/plugin-transform-block-scoping": "^7.16.7",
     "babel-loader": "^8.2.4",
+    "connect-api-mocker": "^1.10.0",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
