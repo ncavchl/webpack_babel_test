@@ -11,3 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     .join("");
 });
 console.log(process.env.NODE_ENV); // "development"
+if (module.hot) {
+  console.log("핫모듈 켜짐");
+
+  // module.hot.accept("./view", () => {
+  //   console.log("view 모듈 변경됨"); // 변경된 모듈 감지
+  // })
+}
